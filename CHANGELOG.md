@@ -8,6 +8,25 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+### Added
+
+- WinUI-style custom title bar with Windows 11 caption buttons.
+- The UI follows Windows light/dark theme and accent color while the app is running.
+- Windows 11 Snap Layouts on the custom maximize button.
+
+### Changed
+
+- The window uses an undecorated frame with Mica instead of the Win32 title bar.
+- Buttons use the default arrow cursor instead of the pointing hand.
+
+### Fixed
+
+- Title bar text and caption icons follow the system light and dark theme.
+- Title bar text uses the correct color when the app starts in dark mode.
+- Light and dark theme still follow Windows after the window theme is applied.
+- Restore caption icon, title double-click to maximize, and close-button hover size.
+- Close caption icon turns white on the red hover background.
+
 ## [0.1.2] - 2026-09-14
 
 ### Added

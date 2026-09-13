@@ -1,3 +1,7 @@
+#[cfg(windows)]
+mod snap_layout;
+mod system_appearance;
+
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -8,7 +12,23 @@ fn greet(name: &str) -> String {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            system_appearance::system_appearance
+        ])
+        .setup(|app| {
+            #[cfg(windows)]
+            {
+                use tauri::Manager;
+                system_appearance::watch(app.handle());
+                if let Some(window) = app.get_webview_window("main")
+                    && let Err(error) = snap_layout::attach(&window)
+                {
+                    eprintln!("failed to attach Snap Layout overlay: {error}");
+                }
+            }
+            Ok(())
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

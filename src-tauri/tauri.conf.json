@@ -12,9 +12,16 @@
   "app": {
     "windows": [
       {
-        "title": "tauri-bun-react-shadcn-ui-app",
+        "title": "Tauri + React + shadcn/ui",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "minWidth": 330,
+        "decorations": false,
+        "shadow": true,
+        "transparent": true,
+        "windowEffects": {
+          "effects": ["micaLight", "micaDark"]
+        }
       }
     ],
     "security": {
