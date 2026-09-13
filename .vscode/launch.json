@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Tauri Development Debug",
+      "cargo": {
+        "args": [
+          "build",
+          "--manifest-path=${workspaceFolder}/src-tauri/Cargo.toml",
+          "--no-default-features"
+        ],
+        "filter": {
+          "name": "tauri-bun-react-shadcn-ui-app",
+          "kind": "bin"
+        }
+      },
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "ui:dev"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Tauri Production Debug",
+      "cargo": {
+        "args": [
+          "build",
+          "--release",
+          "--manifest-path=${workspaceFolder}/src-tauri/Cargo.toml"
+        ],
+        "filter": {
+          "name": "tauri-bun-react-shadcn-ui-app",
+          "kind": "bin"
+        }
+      },
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "ui:build"
+    }
+  ]
+}
