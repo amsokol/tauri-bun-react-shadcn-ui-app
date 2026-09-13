@@ -8,6 +8,8 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-09-14
+
 ### Added
 
 - WinUI-style custom title bar with Windows 11 caption buttons.
@@ -65,7 +67,8 @@ API or on-disk format changes bump the minor.
 - Native opener plugin for opening URLs from the webview.
 - Apache License 2.0.
 
-[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/releases/tag/v0.1.0
