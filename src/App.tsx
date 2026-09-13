@@ -1,7 +1,9 @@
 import { invoke } from "@tauri-apps/api/core";
 import { useState } from "react";
-import "./App.css";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import reactLogo from "./assets/react.svg";
+import shadcnLogo from "./assets/shadcn.svg";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -13,35 +15,47 @@ function App() {
   }
 
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+    <main className="mx-auto flex min-h-svh max-w-xl flex-col items-center justify-center gap-6 px-4 py-16 text-center">
+      <h1 className="text-3xl font-medium tracking-tight">
+        Welcome to Tauri + React + shadcn/ui
+      </h1>
 
-      <div className="row">
+      <div className="flex justify-center">
         <a href="https://vite.dev" target="_blank" rel="noopener">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
+          <img src="/vite.svg" className="size-24 p-6" alt="Vite logo" />
         </a>
         <a href="https://tauri.app" target="_blank" rel="noopener">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
+          <img src="/tauri.svg" className="size-24 p-6" alt="Tauri logo" />
         </a>
         <a href="https://react.dev" target="_blank" rel="noopener">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={reactLogo} className="size-24 p-6" alt="React logo" />
+        </a>
+        <a href="https://ui.shadcn.com" target="_blank" rel="noopener">
+          <img
+            src={shadcnLogo}
+            className="size-24 p-6 dark:invert"
+            alt="shadcn/ui logo"
+          />
         </a>
       </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+      <p className="text-muted-foreground">
+        Click on the Tauri, Vite, React, and shadcn/ui logos to learn more.
+      </p>
 
       <form
-        className="row"
+        className="flex w-full max-w-sm items-center gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           greet();
         }}
       >
-        <input
+        <Input
           id="greet-input"
+          value={name}
           onChange={(e) => setName(e.currentTarget.value)}
           placeholder="Enter a name..."
         />
-        <button type="submit">Greet</button>
+        <Button type="submit">Greet</Button>
       </form>
       <p>{greetMsg}</p>
     </main>

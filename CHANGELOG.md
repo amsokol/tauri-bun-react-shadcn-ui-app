@@ -8,6 +8,19 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-09-14
+
+### Added
+
+- Cursor rule that forbids installing software on the host machine.
+- shadcn/ui with the nova preset, Base UI, Tailwind CSS v4, and Button and Input components.
+- Official shadcn/ui logo and welcome heading on the home screen.
+
+### Changed
+
+- Biome CSS parsing now allows Tailwind v4 directives.
+- markdownlint ignores Cursor agent skill files under `.agents`.
+
 ## [0.1.1] - 2026-09-13
 
 ### Added
@@ -32,6 +45,7 @@ API or on-disk format changes bump the minor.
 - Native opener plugin for opening URLs from the webview.
 - Apache License 2.0.
 
-[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.1...HEAD
+[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/releases/tag/v0.1.0

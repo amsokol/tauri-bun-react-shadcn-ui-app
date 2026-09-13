@@ -1,6 +1,6 @@
 {
   "globs": ["**/*.md", "**/*.mdc"],
-  "ignores": ["**/node_modules/**", "**/src-tauri/target/**"],
+  "ignores": ["**/node_modules/**", "**/src-tauri/target/**", "**/.agents/**"],
   "config": {
     "MD013": false,
     "MD024": {

@@ -1,0 +1,19 @@
+---
+description: Never install software on the host machine
+alwaysApply: true
+---
+
+# No host software installs
+
+Never install software on the user's machine. Never attempt it. Never ask for approval to run an installer as a workaround.
+
+Forbidden examples:
+
+- `winget`, `choco`, `scoop`, `brew`, `apt`, `msiexec`, setup/installer executables
+- Global package installs (`npm i -g`, `bun add -g`, `pip install --user`, `cargo install`)
+- Downloading CLIs or binaries into system or user-bin paths
+- `rustup` toolchain or component installs, unless the user explicitly asked for that exact command
+
+If a tool is missing, stop. Tell the user which command failed and which already-installed tool is required. Do not suggest or run an install command.
+
+Allowed: project-local dependencies in this repository (`bun add`, `cargo add`) that follow the 2-day quarantine rule. Use only tools that are already on PATH.
