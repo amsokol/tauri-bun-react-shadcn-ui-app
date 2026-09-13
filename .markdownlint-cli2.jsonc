@@ -1,0 +1,13 @@
+{
+  "globs": ["**/*.md", "**/*.mdc"],
+  "ignores": ["**/node_modules/**", "**/src-tauri/target/**"],
+  "config": {
+    "MD013": false,
+    "MD024": {
+      "siblings_only": true
+    },
+    "MD041": {
+      "front_matter_title": "^\\s*description\\s*:"
+    }
+  }
+}

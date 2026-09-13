@@ -1,0 +1,25 @@
+---
+description: Wait 2 days before adding or upgrading external dependency versions
+alwaysApply: true
+---
+
+# External dependency quarantine
+
+Do not add or upgrade an external dependency until **that exact version** has been published for at least **2 days** (48 hours).
+
+This applies to npm/Bun packages, crates.io crates, GitHub Action pins, editor extensions, and other third-party registries. It does not apply to this repository.
+
+Before adding or bumping a version:
+
+1. Look up the version's publish timestamp.
+2. If it is younger than 2 days, keep the current pin or take the newest version that is at least 2 days old.
+3. Pin the chosen version exactly (`=` in `package.json` and `Cargo.toml`), including lockfile updates from `bun update` or `cargo update`.
+
+Check timestamps:
+
+```sh
+npm view <package>@<version> time
+cargo info <crate>@<version>
+```
+
+Do not skip quarantine for patch releases or "safe" looking bumps. A compromised package often looks like a routine upgrade.

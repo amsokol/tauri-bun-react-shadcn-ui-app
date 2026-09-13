@@ -1,0 +1,28 @@
+---
+description: Checklist to complete before creating a git commit
+alwaysApply: true
+---
+
+# Before commit
+
+Complete these steps in order. Do not create a commit if any step fails.
+
+1. Update `CHANGELOG.md` under `[Unreleased]` using Keep a Changelog groups (`Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`). Omit empty groups. While the major version is 0, compatible additions bump the patch; breaking API or on-disk format changes bump the minor. Do not rewrite published versions.
+
+2. Run formatters and linters:
+
+   ```sh
+   bun run lint:fix
+   bun run lint
+   ```
+
+3. Run build and tests:
+
+   ```sh
+   bun run build
+   cargo test --manifest-path src-tauri/Cargo.toml --all-targets
+   ```
+
+If `package.json` defines a `test` script, also run `bun run test`.
+
+Never skip this checklist for a "small" change. Never skip git hooks unless the user explicitly asks.

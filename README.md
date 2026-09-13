@@ -4,4 +4,21 @@ This template should help get you started developing with Tauri, React and Types
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+VS Code or Cursor with:
+
+- `tauri-apps.tauri-vscode`
+- `rust-lang.rust-analyzer`
+- `biomejs.biome`
+- `DavidAnson.vscode-markdownlint`
+
+## Lint
+
+```sh
+bun run lint
+```
+
+Auto-fix frontend issues and format Rust with:
+
+```sh
+bun run lint:fix
+```

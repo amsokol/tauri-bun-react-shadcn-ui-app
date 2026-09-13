@@ -1,0 +1,28 @@
+---
+description: How to publish a GitHub release when the user asks to publish a release
+alwaysApply: true
+---
+
+# Publish release
+
+When the user asks to publish a release, complete these steps in order. Stop if any step fails.
+
+1. Update `CHANGELOG.md`: move `[Unreleased]` notes into `## [X.Y.Z] - YYYY-MM-DD`, leave `[Unreleased]` empty, and update the footer compare/tag links. While the major version is 0, compatible additions bump the patch; breaking API or on-disk format changes bump the minor. Set the same version in `package.json`, `src-tauri/Cargo.toml`, and `src-tauri/tauri.conf.json`. Do not rewrite published versions.
+
+2. Follow the before-commit checklist, then commit the release. Do not skip git hooks.
+
+3. Create annotated tag `vX.Y.Z` on that commit:
+
+   ```sh
+   git tag -a vX.Y.Z -m "vX.Y.Z"
+   ```
+
+4. Push the commit and tag, then publish the GitHub release from the new changelog section:
+
+   ```sh
+   git push origin HEAD
+   git push origin vX.Y.Z
+   gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."
+   ```
+
+Do not force-push.
