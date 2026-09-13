@@ -4,6 +4,8 @@ mod system_appearance;
 
 use mimalloc::MiMalloc;
 
+// On the lib crate so the desktop binary, lib tests, and mobile
+// cdylib/staticlib all share one allocator. Do not also set this in main.rs.
 #[global_allocator]
 static GLOBAL: MiMalloc = MiMalloc;
 

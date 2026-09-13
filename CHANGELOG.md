@@ -13,7 +13,7 @@ API or on-disk format changes bump the minor.
 - WinUI-style custom title bar with Windows 11 caption buttons.
 - The UI follows Windows light/dark theme and accent color while the app is running.
 - Windows 11 Snap Layouts on the custom maximize button.
-- mimalloc as the Rust global allocator.
+- mimalloc as the Rust global allocator, with C `malloc` override on Unix/macOS.
 
 ### Changed
 
