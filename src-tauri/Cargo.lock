@@ -2042,6 +2042,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "mimalloc"
+version = "3.5.1"
+source = "git+https://github.com/amsokol/mimalloc?tag=v3.5.1#1ea5e861e9e08207e176919584f4a78099f33957"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "mime"
 version = "0.3.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3462,6 +3470,7 @@ dependencies = [
 name = "tauri-bun-react-shadcn-ui-app"
 version = "0.1.2"
 dependencies = [
+ "mimalloc",
  "serde",
  "serde_json",
  "tauri",
