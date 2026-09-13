@@ -28,10 +28,11 @@ pub fn run() {
             {
                 use tauri::Manager;
                 system_appearance::watch(app.handle());
-                if let Some(window) = app.get_webview_window("main")
-                    && let Err(error) = snap_layout::attach(&window)
-                {
-                    eprintln!("failed to attach Snap Layout overlay: {error}");
+                if let Some(window) = app.get_webview_window("main") {
+                    system_appearance::apply_window_theme(&window);
+                    if let Err(error) = snap_layout::attach(&window) {
+                        eprintln!("failed to attach Snap Layout overlay: {error}");
+                    }
                 }
             }
             Ok(())

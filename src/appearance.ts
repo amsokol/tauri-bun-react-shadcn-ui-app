@@ -71,3 +71,12 @@ export async function initAppearance() {
     await syncWindowTheme(media.matches);
   }
 }
+
+export async function revealWindow() {
+  if (!isTauriRuntime()) {
+    return;
+  }
+  const current = getCurrentWindow();
+  await current.show();
+  await current.setFocus();
+}

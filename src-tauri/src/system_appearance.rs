@@ -1,3 +1,5 @@
+#![cfg_attr(windows, allow(unsafe_code))]
+
 use serde::Serialize;
 
 #[derive(Clone, Serialize)]
@@ -32,6 +34,66 @@ pub fn watch(app: &tauri::AppHandle) {
     if let Err(error) = try_watch(app) {
         eprintln!("failed to watch Windows appearance: {error}");
     }
+}
+
+#[cfg(windows)]
+pub fn apply_window_theme(window: &tauri::WebviewWindow) {
+    let appearance = match read_windows_appearance() {
+        Ok(appearance) => appearance,
+        Err(error) => {
+            eprintln!("failed to read Windows appearance: {error}");
+            return;
+        }
+    };
+    let theme = if appearance.dark {
+        tauri::Theme::Dark
+    } else {
+        tauri::Theme::Light
+    };
+    if let Err(error) = window.set_theme(Some(theme)) {
+        eprintln!("failed to set window theme: {error}");
+    }
+    let color = if appearance.dark {
+        tauri::webview::Color(0, 0, 0, 0)
+    } else {
+        tauri::webview::Color(255, 255, 255, 0)
+    };
+    if let Err(error) = window.set_background_color(Some(color)) {
+        eprintln!("failed to set window background: {error}");
+    }
+    if let Err(error) = prepare_native_window(window, appearance.dark) {
+        eprintln!("failed to prepare native window theme: {error}");
+    }
+}
+
+#[cfg(windows)]
+fn prepare_native_window(window: &tauri::WebviewWindow, dark: bool) -> Result<(), String> {
+    use std::mem::size_of;
+    use windows::Win32::Foundation::HWND;
+    use windows::Win32::Graphics::Dwm::{DWMWA_USE_IMMERSIVE_DARK_MODE, DwmSetWindowAttribute};
+    use windows::Win32::Graphics::Gdi::{GetStockObject, NULL_BRUSH};
+    use windows::Win32::UI::WindowsAndMessaging::{GCLP_HBRBACKGROUND, SetClassLongPtrW};
+
+    let hwnd = HWND(window.hwnd().map_err(|error| error.to_string())?.0 as *mut _);
+    let dark_mode = i32::from(dark);
+    unsafe {
+        // SAFETY: `hwnd` is the live Tauri window; DWM reads a BOOL-sized buffer.
+        DwmSetWindowAttribute(
+            hwnd,
+            DWMWA_USE_IMMERSIVE_DARK_MODE,
+            std::ptr::from_ref(&dark_mode).cast(),
+            u32::try_from(size_of::<i32>()).expect("BOOL size fits u32"),
+        )
+    }
+    .map_err(|error| error.to_string())?;
+
+    let brush = unsafe { GetStockObject(NULL_BRUSH) };
+    unsafe {
+        // SAFETY: `hwnd` is valid; a null background brush stops DefWindowProc from
+        // filling the client area with the default white class brush.
+        SetClassLongPtrW(hwnd, GCLP_HBRBACKGROUND, brush.0 as isize);
+    }
+    Ok(())
 }
 
 #[cfg(windows)]

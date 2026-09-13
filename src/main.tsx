@@ -1,14 +1,28 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { flushSync } from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
-import { initAppearance } from "./appearance";
+import { initAppearance, revealWindow } from "./appearance";
 import "./index.css";
 
 void (async () => {
-  await initAppearance();
-  ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  );
+  const revealTimeout = window.setTimeout(() => {
+    void revealWindow();
+  }, 3000);
+  try {
+    await initAppearance();
+    const root = document.getElementById("root");
+    if (root) {
+      flushSync(() => {
+        createRoot(root).render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>,
+        );
+      });
+    }
+  } finally {
+    window.clearTimeout(revealTimeout);
+    await revealWindow();
+  }
 })();
