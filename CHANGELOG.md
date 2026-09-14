@@ -8,6 +8,8 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-09-14
+
 ### Added
 
 - The window restores its last position and size, and stays on a visible display if a monitor was unplugged.
@@ -77,7 +79,8 @@ API or on-disk format changes bump the minor.
 - Native opener plugin for opening URLs from the webview.
 - Apache License 2.0.
 
-[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.3...HEAD
+[unreleased]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/amsokol/tauri-bun-react-shadcn-ui-app/compare/v0.1.0...v0.1.1
