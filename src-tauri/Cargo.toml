@@ -17,7 +17,8 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 
 [lints.rust]
 # Denied by default. Native Windows modules may use `unsafe`
-# (`snap_layout.rs` for Snap Layouts, `system_appearance.rs` for DWM theme).
+# (`snap_layout.rs` for Snap Layouts, `system_appearance.rs` for DWM theme,
+# `window_state.rs` for WINDOWPLACEMENT).
 unsafe_code = "deny"
 
 [lints.clippy]

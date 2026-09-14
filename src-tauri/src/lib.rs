@@ -1,6 +1,7 @@
 #[cfg(windows)]
 mod snap_layout;
 mod system_appearance;
+mod window_state;
 
 use mimalloc::MiMalloc;
 
@@ -24,15 +25,20 @@ pub fn run() {
             system_appearance::system_appearance
         ])
         .setup(|app| {
+            use tauri::Manager;
             #[cfg(windows)]
             {
-                use tauri::Manager;
                 system_appearance::watch(app.handle());
-                if let Some(window) = app.get_webview_window("main") {
+            }
+            if let Some(window) = app.get_webview_window("main") {
+                #[cfg(windows)]
+                {
                     system_appearance::apply_window_theme(&window);
-                    if let Err(error) = snap_layout::attach(&window) {
-                        eprintln!("failed to attach Snap Layout overlay: {error}");
-                    }
+                }
+                window_state::attach(&window);
+                #[cfg(windows)]
+                if let Err(error) = snap_layout::attach(&window) {
+                    eprintln!("failed to attach Snap Layout overlay: {error}");
                 }
             }
             Ok(())

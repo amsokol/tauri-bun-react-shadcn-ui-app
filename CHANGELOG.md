@@ -8,9 +8,15 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+### Added
+
+- The window restores its last position and size, and stays on a visible display if a monitor was unplugged.
+
 ### Fixed
 
 - Dark theme no longer flashes a white window before the first paint.
+- Restoring from maximized uses the previous window size instead of the full display.
+- Window position is stored in Local AppData, not Roaming.
 
 ## [0.1.3] - 2026-09-14
 
