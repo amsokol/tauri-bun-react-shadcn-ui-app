@@ -8,6 +8,10 @@ API or on-disk format changes bump the minor.
 
 ## [Unreleased]
 
+### Changed
+
+- README describes the current WinUI-style desktop app, stack, and commands.
+
 ## [0.1.4] - 2026-09-14
 
 ### Added
